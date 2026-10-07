@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Museum of Us</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         หน้าตั๋ว
+    ========================== -->
+
+    <main
+        class="ticket-page"
+        id="ticketPage"
+    >
+
+        <div class="ticket-area">
+
+            <button
+                class="ticket"
+                id="ticketButton"
+                type="button"
+            >
+
+                <div class="ticket-watermark">
+                    1608
+                </div>
+
+                <div class="ticket-border"></div>
+
+
+                <!-- ส่วนหลักของตั๋ว -->
+
+                <section class="ticket-main">
+
+                    <div class="ticket-top">
+
+                        <span>
+                            MUSEUM OF US
+                        </span>
+
+                        <span>
+                            SPECIAL EDITION
+                        </span>
+
+                    </div>
+
+                    <div class="gold-line"></div>
+
+                    <p class="eyebrow">
+                        A PRIVATE EXHIBITION
+                    </p>
+
+                    <h1>
+                        OUR
+                        <br>
+                        <em>STORY</em>
+                    </h1>
+
+                    <p class="description">
+                        A COLLECTION OF
+                        <br>
+                        LITTLE MOMENTS
+                        <br>
+                        THAT BECAME MEMORIES
+                    </p>
+
+
+                    <div class="ticket-info">
+
+                        <div>
+                            <small>EXHIBITION</small>
+                            <b>14</b>
+                        </div>
+
+                        <div>
+                            <small>TICKET</small>
+                            <b>1608</b>
+                        </div>
+
+                        <div>
+                            <small>YEAR</small>
+                            <b>2026</b>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ด้านข้างตั๋ว -->
+
+                <aside class="ticket-side">
+
+                    <div class="admit">
+                        ADMIT
+                        <br>
+                        ONE
+                    </div>
+
+                    <div class="barcode">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div>
+
+                    <div class="side-number">
+                        1608
+                    </div>
+
+                    <div class="stamp">
+
+                        <span>
+                            MUSEUM
+                        </span>
+
+                        <strong>
+                            ♥
+                        </strong>
+
+                        <span>
+                            OF US
+                        </span>
+
+                    </div>
+
+                </aside>
+
+            </button>
+
+
+            <p class="click-hint">
+                ✦ &nbsp;
+                CLICK THE TICKET TO ENTER
+                &nbsp; ✦
+            </p>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         หน้ากรอกรหัส
+    ========================== -->
+
+    <div
+        class="password-overlay"
+        id="passwordOverlay"
+    >
+
+        <div class="password-box">
+
+            <button
+                class="close-button"
+                id="closeButton"
+                type="button"
+            >
+                
+            </button>
+
+            <p class="popup-title">
+                PRIVATE EXHIBITION
+            </p>
+
+            <h2>
+                ENTER CODE
+            </h2>
+
+            <p class="popup-description">
+                Enter your secret code
+            </p>
+
+
+            <!-- จุดแสดงรหัส -->
+
+            <div class="code-dots">
+
+                <span id="dot1"></span>
+                <span id="dot2"></span>
+                <span id="dot3"></span>
+                <span id="dot4"></span>
+
+            </div>
+
+
+            <!-- แป้นตัวเลข -->
+
+            <div class="number-pad">
+
+                <button
+                    data-number="1"
+                    type="button"
+                >
+                    1
+                </button>
+
+                <button
+                    data-number="2"
+                    type="button"
+                >
+                    2
+                </button>
+
+                <button
+                    data-number="3"
+                    type="button"
+                >
+                    3
+                </button>
+
+                <button
+                    data-number="4"
+                    type="button"
+                >
+                    4
+                </button>
+
+                <button
+                    data-number="5"
+                    type="button"
+                >
+                    5
+                </button>
+
+                <button
+                    data-number="6"
+                    type="button"
+                >
+                    6
+                </button>
+
+                <button
+                    data-number="7"
+                    type="button"
+                >
+                    7
+                </button>
+
+                <button
+                    data-number="8"
+                    type="button"
+                >
+                    8
+                </button>
+
+                <button
+                    data-number="9"
+                    type="button"
+                >
+                    9
+                </button>
+
+                <button
+                    id="clearButton"
+                    class="special"
+                    type="button"
+                >
+                    C
+                </button>
+
+                <button
+                    data-number="0"
+                    type="button"
+                >
+                    0
+                </button>
+
+                <button
+                    id="deleteButton"
+                    class="special"
+                    type="button"
+                >
+                    ⌫
+                </button>
+
+            </div>
+
+
+            <p
+                class="error-message"
+                id="errorMessage"
+            ></p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         หน้า Welcome
+    ========================== -->
+
+    <section
+        class="welcome-page"
+        id="welcomePage"
+    >
+
+        <div class="welcome-content">
+
+            <p>
+                WELCOME TO
+            </p>
+
+            <h2>
+                MUSEUM
+                <br>
+                <em>OF US</em>
+            </h2>
+
+            <p>
+                OUR STORY STARTS HERE
+            </p>
+
+            <button
+                id="startButton"
+                type="button"
+            >
+                ENTER THE EXHIBITION →
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         MUSEUM MAIN PAGE
+    ========================== -->
+
+    <section
+        class="museum-page"
+        id="museumPage"
+    >
+
+        <div class="museum-header">
+
+            <p>
+                MUSEUM OF US
+            </p>
+
+            <nav class="museum-nav">
+
+                <a href="#story">STORY</a>
+                <a href="#moments">MOMENTS</a>
+
+            </nav>
+
+            <span>
+                EST. 2026
+            </span>
+
+        </div>
+
+
+        <div class="museum-title" id="story">
+
+            <p>
+                EXHIBITION 01
+            </p>
+
+            <h2>
+                THE STORY
+                <br>
+                <em>OF US</em>
+            </h2>
+
+            <p class="museum-subtitle">
+                A collection of moments,
+                memories and little things
+                that belong only to us.
+            </p>
+
+        </div>
+
+
+        <div class="museum-line"></div>
+
+
+
+        <!-- =========================
+             MEMORY EXHIBITION
+        ========================== -->
+
+        <section class="memory-section">
+
+            <div class="memory-label">
+
+                <span>
+                    EXHIBITION 01
+                </span>
+
+                <span>
+                    MEMORY 001
+                </span>
+
+            </div>
+
+
+            <div class="memory-content">
+
+
+                <!-- รูป -->
+
+                <div class="memory-photo">
+
+                    <img
+                        src="images/85275.jpg"
+                        alt="Our memory"
+                    >
+
+                </div>
+
+
+                <!-- ข้อความ -->
+
+                <div class="memory-text">
+
+                    <p class="memory-small">
+                        THE FIRST MEMORY
+                    </p>
+
+                    <h3>
+                        A LITTLE
+                        <br>
+                        <em>BEGINNING</em>
+                    </h3>
+
+                    <p>
+                        Every story has a beginning.
+                        This is where ours starts.
+                    </p>
+
+                    <span class="memory-date">
+                        16 — 08 — 2025
+                    </span>
+
+                </div>
+
+            </div>
+            <!-- =========================
+                PHOTO GALLERY
+            ========================= -->
+
+        <section class="photo-gallery" id="moments">
+
+            <div class="gallery-heading">
+                <p>EXHIBITION 01</p>
+                <h3>OUR <em>MOMENTS</em></h3>
+            </div>
+
+            <div class="gallery-grid">
+
+                <div class="gallery-item">
+                    <img src="images/85279.jpg" alt="Memory 002">
+                    <p>MEMORY 002</p>
+                    <span>A LITTLE MOMENT</span>
+                    <small>16 — 09 — 2025</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/79233.jpg" alt="Memory 003">
+                    <p>MEMORY 003</p>
+                    <span>ONE OF OUR DAYS</span>
+                    <small>16 — 10 — 2025</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/79234.jpg" alt="Memory 004">
+                    <p>MEMORY 004</p>
+                    <span>JUST US</span>
+                    <small>16 — 11 — 2025</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/79235.jpg" alt="Memory 005">
+                    <p>MEMORY 005</p>
+                    <span>A BEAUTIFUL DAY</span>
+                    <small>16 — 12 — 2025</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/85282.jpg" alt="Memory 006">
+                    <p>MEMORY 006</p>
+                    <span>ANOTHER MEMORY</span>
+                    <small>16 — 01 — 2026</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/79236.jpg" alt="Memory 007">
+                    <p>MEMORY 007</p>
+                    <span>KEPT FOREVER</span>
+                    <small>16 — 02 — 2026</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/85296.jpg" alt="Memory 008">
+                    <p>MEMORY 008</p>
+                    <span>OUR LITTLE WORLD</span>
+                    <small>16 — 03 — 2026</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/85301.jpg" alt="Memory 009">
+                    <p>MEMORY 009</p>
+                    <span>UNTIL THIS DAY</span>
+                    <small>16 — 04 — 2026</small>
+                </div>
+
+                <!-- เพิ่มรูปใหม่ -->
+
+                <div class="gallery-item">
+                    <img src="images/85286.jpg" alt="Memory 010">
+                    <p>MEMORY 010</p>
+                    <span>ANOTHER LITTLE DAY</span>
+                    <small>16 — 05 — 2026</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/85283.jpg" alt="Memory 011">
+                    <p>MEMORY 011</p>
+                    <span>SMALL MOMENTS</span>
+                    <small>16 — 06 — 2026</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/85304.jpg" alt="Memory 012">
+                    <p>MEMORY 012</p>
+                    <span>JUST ANOTHER DAY</span>
+                    <small>16 — 07 — 2026</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/85315.jpg" alt="Memory 013">
+                    <p>MEMORY 013</p>
+                    <span>ONE MORE MEMORY</span>
+                    <small>16 — 08 — 2026</small>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/85320.jpg" alt="Memory 014">
+                    <p>MEMORY 014</p>
+                    <span>OUR FAVORITE MOMENT</span>
+                    <small>16 — 09 — 2026</small>
+                </div>
+
+                <div class="gallery-item mystery-memory">
+                    <div class="mystery-card">
+                        <span>?</span>
+                    </div>
+
+                    <p>MEMORY 015</p>
+                    <span>THE LAST MEMORY</span>
+                    <small>?</small>
+                </div>
+            </div>
+
+            </div>
+
+        </section>
+    </section>
+
+     <!-- =========================
+         LOVE LETTER
+    ========================= -->
+
+<section class="letter-section">
+
+        <div class="letter-label">
+            EXHIBITION 02
+        </div>
+
+        <div class="letter-card">
+
+            <p class="letter-small">
+                A LETTER FOR YOU
+            </p>
+
+            <h3>
+                TO MY
+                <br>
+                <em>FAVORITE PERSON</em>
+            </h3>
+
+            <div class="letter-line"></div>
+
+            <div class="letter-content">
+    <p class="letter-to">ถึงเธอ</p>
+
+    <p>
+        ตอนครบรอบ 1 ปี เค้าไม่ได้ทำอะไรให้เธอเลย<br>
+        ครบรอบเดือนนี้ เค้าเลยอยากทำอันนี้ให้เธอ
+    </p>
+
+    <p>
+        ไม่รู้ว่าเธอจะชอบมั้ย<br>
+        เพราะคำมันเลี่ยนมากกก 555<br>
+        แต่เค้าตั้งใจทำมากเลยนะ
+    </p>
+
+    <p>
+        แปลกใช่มั้ยที่เค้าเพิ่งมาบอกตอนถึงตรงนี้<br>
+        เค้าก็สงสัยเหมือนกัน
+    </p>
+
+    <p>
+        ก็ไม่มีอะไรมาก<br>
+        เค้าอยากบอกเธอว่า
+    </p>
+
+    <p class="letter-highlight">
+        เค้าดีใจมากเลยที่มีเธออยู่ด้วย
+    </p>
+
+    <p>
+        ตลอดเวลาที่เค้ามีเธอ<br>
+        เค้ามีความสุขมาก ๆๆๆ เลย
+    </p>
+
+    <p class="letter-love">
+        เค้ารักเธอนะคะ<br>
+        จุ้บ ๆ ♡
+    </p>
+</div>
+
+            <p class="letter-sign">
+                WITH LOVE,
+                <br>
+                <em>US</em>
+            </p>
+
+        </div>
+
+    </section>
+    
+        <!-- EXHIBITION 03 - DRAWING -->
+<section class="drawing-section">
+
+    <div class="drawing-label">
+        EXHIBITION 03
+    </div>
+
+    <div class="drawing-heading">
+        <p>A LITTLE SPACE FOR YOU</p>
+
+        <h3>
+            DRAW<br>
+            <em>FOR US</em>
+        </h3>
+    </div>
+
+    <div class="drawing-card">
+
+        <div class="drawing-card-top">
+            <span>MEMORY 016</span>
+            <span>FOR MY FAVORITE PERSON</span>
+        </div>
+
+        <div class="drawing-paper">
+
+            <div class="drawing-paper-title">
+                DRAW SOMETHING
+                <br>
+                <em>FOR ME</em>
+            </div>
+
+            <div class="drawing-space">
+                <canvas id="drawingCanvas"></canvas>
+            </div>
+
+            <div class="drawing-tools">
+                <button type="button" id="clearDrawing">CLEAR</button>
+                <button type="button" id="saveDrawing">SAVE MY DRAWING</button>
+            </div>
+
+            <div class="drawing-paper-bottom">
+                <span>MUSEUM OF US</span>
+                <span>2026</span>
+            </div>
+
+        </div>
+
+        <p class="drawing-note">
+            วาดรูปที่เธออยากวาดให้เเค้า
+            <br>
+            วาดแล้วส่งมาให้เค้าด้วยย
+        </p>
+
+    </div>
+
+</section>
+
+        <!-- =========================
+     EXHIBITION 04 - LUCKY CARDS
+     ========================= -->
+
+<section class="keepsake-section">
+
+    <div class="keepsake-label">
+        EXHIBITION 04
+    </div>
+
+    <div class="keepsake-card">
+
+        <p class="keepsake-small">
+            A LITTLE SURPRISE FOR YOU
+        </p>
+
+        <h3>
+            PICK YOUR
+            <br>
+            <em>LUCKY CARD</em>
+        </h3>
+
+        <div class="keepsake-line"></div>
+
+        <p class="keepsake-text">
+            เลือกการ์ดหนึ่งใบ
+            <br>
+            แล้วมาดูกันว่าเธอจะได้อะไร
+        </p>
+
+        <button
+            class="keepsake-button"
+            id="keepsakeButton"
+            type="button"
+            onclick="document.getElementById('luckyViewer').classList.add('show')"
+        >
+            OPEN THE CARDS
+        </button>
+
+    </div>
+
+</section>
+
+       <!-- FINAL EXHIBITION -->
+<section class="ending-section" id="finalExhibition">
+
+    <div class="ending-stars">
+        <span>✦</span>
+        <span>·</span>
+        <span>✦</span>
+    </div>
+
+    <p class="ending-label">FINAL EXHIBITION</p>
+
+    <div class="ending-symbol">♡</div>
+
+    <h3>
+        HAPPY<br>
+        <em>ANNIVERSARY</em>
+    </h3>
+
+    <div class="ending-line"></div>
+
+    <div class="ending-letter">
+        <p>
+            สุขสันต์วันครบรอบนะคะเธอ
+        </p>
+
+        <p>
+            ขอบคุณที่เธออยู่กับเค้า<br>
+            คอยสอนเค้า<br>
+            เลี้ยงคนอ้วน ๆ แบบเค้าา
+        </p>
+
+        <p>
+            ขอบคุณที่เธอรักหมาอ้วน ๆ แบบเค้า
+        </p>
+
+        <p class="ending-love">
+            เค้ารักเธอที่สุดเลยยยย
+        </p>
+
+        <p class="ending-love">
+            รักไอ้อ้วนมาก ๆ
+        </p>
+
+        <p class="ending-final">
+            รักตาวันที่สุดในโลกกก ♡
+        </p>
+    </div>
+
+    <p class="ending-date">
+        MUSEUM OF US · 2026
+    </p>
+
+    <button class="ending-exit" id="endingExit" type="button">
+        BACK TO THE BEGINNING
+    </button>
+
+</section>
+
+        <!-- =========================
+        IMAGE VIEWER
+        ========================= -->
+
+        <div class="image-viewer" id="imageViewer">
+
+            <button id="viewerClose" type="button">
+                ×
+            </button>
+
+            <button
+                class="viewer-arrow viewer-prev"
+                id="viewerPrev"
+                type="button"
+            >
+                ←
+            </button>
+
+            <div class="viewer-content">
+
+                <img
+                    id="viewerImage"
+                    src=""
+                    alt="Memory"
+                >
+
+                <div class="viewer-info">
+
+                    <p id="viewerMemory">
+                        MEMORY 002
+                    </p>
+
+                    <h3 id="viewerTitle">
+                        A LITTLE MOMENT
+                    </h3>
+
+                    <span id="viewerDate">
+                        08 — 03 — 2026
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button
+                class="viewer-arrow viewer-next"
+                id="viewerNext"
+                type="button"
+            >
+                →
+            </button>
+
+        </div>
+
+        <!-- =========================
+         KEEPSAKE VIEWER
+        ========================= -->
+
+        
+
+</div>
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+    <!-- =========================
+     LUCKY CARD
+========================= -->
+
+<div class="lucky-viewer" id="luckyViewer">
+
+    <button
+        class="lucky-close"
+        id="luckyClose"
+        type="button"
+    >
+        ×
+    </button>
+
+    <div class="lucky-content">
+
+        <p class="lucky-small">
+            A LITTLE SURPRISE FOR YOU
+        </p>
+
+        <h3>
+            PICK YOUR<br>
+            <em>LUCKY CARD</em>
+        </h3>
+
+        <div class="lucky-cards">
+
+            <button class="lucky-card" data-gift="0">
+                <span>?</span>
+            </button>
+
+            <button class="lucky-card" data-gift="1">
+                <span>?</span>
+            </button>
+
+            <button class="lucky-card" data-gift="2">
+                <span>?</span>
+            </button>
+
+            <button class="lucky-card" data-gift="3">
+                <span>?</span>
+            </button>
+
+            <button class="lucky-card" data-gift="4">
+                <span>?</span>
+            </button>
+
+        </div>
+
+        <p class="lucky-hint">Choose one card and discover your little surprise.</p>
+
+        <div
+            class="lucky-result"
+            id="luckyResult"
+        >
+
+            <div class="result-symbol">
+                ✦
+            </div>
+
+            <p id="resultSmall">
+                YOUR LUCKY GIFT
+            </p>
+
+            <h4 id="resultTitle">
+                —
+            </h4>
+
+            <span id="resultText">
+                —
+            </span>
+
+            <button
+                id="luckyAgain"
+                type="button"
+            >
+                PICK AGAIN
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     LUCKY CARD VIEWER
+     ========================= -->
+
+<div class="lucky-viewer" id="luckyViewer">
+
+    <button
+        class="lucky-close"
+        id="luckyClose"
+        type="button"
+    >
+        ×
+    </button>
+
+    <div class="lucky-content">
+
+        <p class="lucky-small">
+            A LITTLE SURPRISE FOR YOU
+        </p>
+
+        <h3>
+            PICK YOUR
+            <br>
+            <em>LUCKY CARD</em>
+        </h3>
+
+        <p class="lucky-hint">
+            เลือกการ์ดหนึ่งใบ
+        </p>
+
+        <div class="lucky-cards">
+
+            <button class="lucky-card" type="button">
+                <span>01</span>
+            </button>
+
+            <button class="lucky-card" type="button">
+                <span>02</span>
+            </button>
+
+            <button class="lucky-card" type="button">
+                <span>03</span>
+            </button>
+
+            <button class="lucky-card" type="button">
+                <span>04</span>
+            </button>
+
+            <button class="lucky-card" type="button">
+                <span>05</span>
+            </button>
+
+        </div>
+
+        <div class="lucky-result" id="luckyResult">
+
+            <div class="result-symbol">
+                ✦
+            </div>
+
+            <p>
+                YOUR LUCKY GIFT
+            </p>
+
+            <h4 id="resultTitle">
+                —
+            </h4>
+
+            <span id="resultText">
+                —
+            </span>
+
+            <button
+                id="luckyAgain"
+                type="button"
+            >
+                PICK AGAIN
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

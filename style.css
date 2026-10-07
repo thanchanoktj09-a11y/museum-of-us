@@ -1,0 +1,6317 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    background: #ead9d1;
+    color: #3d242b;
+}
+
+.ticket-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+.ticket-area {
+    width: min(900px, 100%);
+    text-align: center;
+}
+
+.ticket {
+    position: relative;
+
+    width: min(780px, 100%);
+    min-height: 390px;
+
+    display: flex;
+    flex-direction: row;
+
+    border: none;
+    border-radius: 5px;
+    overflow: hidden;
+
+    background: #f4e7d8;
+    color: #42272d;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 25px 50px rgba(73, 40, 44, 0.25);
+
+    transition: 0.3s;
+}
+
+.ticket:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 55px rgba(73, 40, 44, 0.3);
+}
+
+.ticket-border {
+    position: absolute;
+    inset: 13px;
+    border: 1px solid #9c7777;
+    pointer-events: none;
+}
+
+.ticket-watermark {
+    position: absolute;
+    right: 30px;
+    bottom: 5px;
+
+    font-size: 90px;
+    color: rgba(120, 70, 76, 0.05);
+}
+.ticket-main {
+    flex: 1;
+    padding: 38px 45px 32px;
+    text-align: left;
+}
+
+.ticket-top {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    color: #75434c;
+}
+
+.gold-line {
+    width: 100%;
+    height: 1px;
+    margin: 12px 0 25px;
+
+    background: #a98262;
+}
+
+.eyebrow {
+    margin-bottom: 7px;
+
+    font-size: 11px;
+    letter-spacing: 4px;
+
+    color: #9b5962;
+}
+
+.ticket h1 {
+    font-size: 70px;
+    line-height: 0.85;
+    letter-spacing: 5px;
+
+    color: #4b2930;
+}
+
+.ticket h1 em {
+    color: #9c5360;
+    font-weight: normal;
+}
+
+.description {
+    margin-top: 22px;
+
+    font-size: 11px;
+    line-height: 1.8;
+    letter-spacing: 2px;
+
+    color: #775258;
+}
+.ticket-info {
+    display: flex;
+    gap: 45px;
+    margin-top: 28px;
+}
+
+.ticket-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ticket-info small {
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: #9a6b70;
+}
+
+.ticket-info b {
+    font-size: 17px;
+    letter-spacing: 2px;
+    color: #4c2931;
+}
+
+
+/* ด้านข้างตั๋ว */
+
+.ticket-side {
+    position: relative;
+
+    width: 145px;
+    min-width: 145px;
+
+    border-left: 2px dashed #a98b8b;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 30px 15px;
+}
+
+.admit {
+    text-align: center;
+
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.2;
+
+    letter-spacing: 1px;
+
+    color: #75434c;
+}
+
+.side-number {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 4px;
+
+    color: #75434c;
+}
+/* หมุนทุกอย่างที่อยู่ในปลายตั๋ว */
+
+.ticket-side > * {
+    transform: rotate(90deg);
+}
+
+/* กันตราวงกลมโดนกฎเดิม */
+
+.ticket-side .stamp {
+    transform: rotate(90deg);
+}
+
+.stamp {
+    width: 65px;
+    height: 65px;
+
+    border: 1px solid #a76b72;
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: #9b5962;
+
+    transform: rotate(-10deg);
+}
+
+.stamp span {
+    font-size: 6px;
+    letter-spacing: 1px;
+}
+
+.stamp strong {
+    font-size: 18px;
+}
+.barcode {
+    width: 80px;
+    height: 65px;
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 3px;
+}
+
+.barcode i {
+    width: 3px;
+    height: 100%;
+    background: #4c2930;
+}
+
+.barcode i:nth-child(2),
+.barcode i:nth-child(6) {
+    width: 1px;
+}
+
+.barcode i:nth-child(4),
+.barcode i:nth-child(8) {
+    width: 5px;
+}
+
+
+/* ข้อความใต้ตั๋ว */
+
+.click-hint {
+    margin-top: 25px;
+
+    font-size: 10px;
+    letter-spacing: 3px;
+
+    color: #70434a;
+}
+/* หน้าต่างใส่รหัส */
+
+.password-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(35, 19, 27, 0.72);
+}
+
+.password-overlay.show {
+    display: flex;
+}
+
+.password-box {
+    position: relative;
+
+    width: 350px;
+    padding: 38px 30px 32px;
+
+    border-radius: 20px;
+
+    background: #302035;
+    color: white;
+
+    text-align: center;
+
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ปุ่ม X */
+
+.close-button {
+    position: absolute;
+
+    top: 10px;
+    right: 15px;
+
+    border: none;
+    background: none;
+
+    color: white;
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+
+/* หัวข้อ */
+
+.popup-title {
+    font-size: 9px;
+    letter-spacing: 3px;
+
+    color: #d7a5b4;
+    margin-bottom: 8px;
+}
+
+.password-box h2 {
+    font-size: 28px;
+    letter-spacing: 4px;
+
+    margin-bottom: 8px;
+}
+
+.popup-description {
+    font-size: 12px;
+    color: #aaa0aa;
+
+    margin-bottom: 22px;
+}
+/* จุดแสดงรหัส */
+
+.code-dots {
+    display: flex;
+    justify-content: center;
+    gap: 13px;
+
+    margin-bottom: 27px;
+}
+
+.code-dots span {
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    border: 1px solid #aaa0aa;
+    background: transparent;
+}
+
+.code-dots span.filled {
+    background: #e8a9b8;
+    border-color: #e8a9b8;
+}
+
+
+/* แป้นตัวเลข */
+
+.number-pad {
+    width: 235px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+.number-pad button {
+    height: 50px;
+
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.07);
+
+    color: white;
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+.number-pad button:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.number-pad button:active {
+    transform: scale(0.92);
+}
+
+.number-pad button.special {
+    color: #d7a5b4;
+}
+/* =========================
+   หน้า Welcome
+========================= */
+
+.welcome-page {
+    position: fixed;
+    inset: 0;
+
+    z-index: 50;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background: #251827;
+    color: white;
+}
+
+.welcome-page.show {
+    display: flex;
+}
+
+.welcome-content {
+    padding: 30px;
+}
+
+.welcome-content > p:first-child {
+    font-size: 11px;
+    letter-spacing: 5px;
+
+    color: #d9a6b7;
+
+    margin-bottom: 18px;
+}
+
+.welcome-content h2 {
+    font-size: 70px;
+    line-height: 0.9;
+    letter-spacing: 6px;
+
+    margin-bottom: 25px;
+}
+
+.welcome-content h2 em {
+    color: #e7a7b7;
+    font-weight: normal;
+}
+
+.welcome-content > p:not(:first-child) {
+    font-size: 10px;
+    letter-spacing: 4px;
+
+    color: #aaa0aa;
+
+    margin-bottom: 35px;
+}
+
+
+/* ปุ่มเข้าสู่นิทรรศการ */
+
+#startButton {
+    padding: 14px 28px;
+
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.08);
+
+    color: white;
+
+    font-family: Georgia, serif;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+}
+
+#startButton:hover {
+    background: white;
+    color: #40253d;
+}
+
+
+/* =========================
+   มือถือ
+========================= */
+
+@media (max-width: 600px) {
+
+    .ticket {
+        min-height: 330px;
+    }
+
+    .ticket-main {
+        padding: 30px 25px;
+    }
+
+    .ticket-side {
+        width: 90px;
+        padding: 30px 8px 25px;
+    }
+
+    .ticket h1 {
+        font-size: 43px;
+        letter-spacing: 3px;
+    }
+
+    .description {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .ticket-info {
+        gap: 20px;
+    }
+
+    .ticket-top {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .password-box {
+        width: 310px;
+    }
+
+    .number-pad {
+        width: 220px;
+    }
+
+    .welcome-content h2 {
+        font-size: 48px;
+    }
+}
+/* =========================
+   ปรับหน้ากรอกรหัส
+========================= */
+
+.password-overlay {
+    background: rgba(25, 15, 25, 0.78);
+    backdrop-filter: blur(6px);
+}
+
+.password-box {
+    width: 330px;
+    padding: 35px 25px 28px;
+
+    border-radius: 22px;
+
+    background: #33223a;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.popup-title {
+    color: #d99aaa;
+    letter-spacing: 3px;
+}
+
+.password-box h2 {
+    color: white;
+    letter-spacing: 4px;
+}
+
+.popup-description {
+    color: #aaa0aa;
+}
+
+
+/* จุดรหัส */
+
+.code-dots {
+    gap: 14px;
+}
+
+.code-dots span {
+    width: 11px;
+    height: 11px;
+
+    border: 1px solid #b9a9b5;
+}
+
+.code-dots span.filled {
+    background: #e4a1b3;
+    border-color: #e4a1b3;
+}
+
+
+/* ปุ่มตัวเลข */
+
+.number-pad {
+    width: 230px;
+    gap: 9px;
+}
+
+.number-pad button {
+    height: 48px;
+
+    border-radius: 13px;
+
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    color: white;
+}
+
+.number-pad button:hover {
+    background: rgba(228,161,179,0.18);
+}
+
+.number-pad button:active {
+    transform: scale(0.92);
+}
+
+
+/* ปุ่ม X */
+
+.close-button {
+    color: #bdaab7;
+}
+
+.close-button:hover {
+    color: white;
+}
+/* =========================
+   WELCOME PAGE
+========================= */
+
+.welcome-page {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #2b1c2f;
+    color: #f5e8df;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.03);
+
+    transition:
+        opacity 0.8s ease,
+        transform 1s ease,
+        visibility 0.8s;
+}
+
+.welcome-page.show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.welcome-content {
+    text-align: center;
+}
+
+.welcome-content > p:first-child {
+    margin-bottom: 25px;
+    color: #d99aaa;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+
+.welcome-content h2 {
+    margin: 0;
+    font-size: clamp(55px, 10vw, 110px);
+    line-height: 0.85;
+    letter-spacing: 5px;
+    font-weight: 400;
+}
+
+.welcome-content h2 em {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+.welcome-content > p:last-of-type {
+    margin-top: 30px;
+    color: #b9a8b5;
+    font-size: 11px;
+    letter-spacing: 4px;
+}
+
+#startButton {
+    margin-top: 40px;
+    padding: 15px 28px;
+
+    border: 1px solid #d99aaa;
+    background: transparent;
+    color: #f5e8df;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#startButton:hover {
+    background: #d99aaa;
+    color: #2b1c2f;
+}
+/* =========================
+   WELCOME DECORATION
+========================= */
+
+.welcome-content {
+    position: relative;
+    padding: 70px 90px;
+}
+
+.welcome-content::before,
+.welcome-content::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 70px;
+    height: 1px;
+    background: #a87583;
+    transform: translateX(-50%);
+}
+
+.welcome-content::before {
+    top: 25px;
+}
+
+.welcome-content::after {
+    bottom: 25px;
+}
+
+.welcome-content h2::before {
+    content: "✦";
+    display: block;
+    margin-bottom: 18px;
+
+    color: #d99aaa;
+    font-size: 14px;
+    letter-spacing: 0;
+}
+/* =========================
+   ENTER BUTTON EFFECT
+========================= */
+
+#startButton {
+    position: relative;
+    overflow: hidden;
+}
+
+#startButton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    transition: 0.4s;
+}
+
+#startButton:hover::before {
+    left: 100%;
+}
+
+#startButton:hover {
+    letter-spacing: 3px;
+    box-shadow: 0 0 25px rgba(217, 154, 170, 0.25);
+}
+/* =========================
+   MUSEUM MAIN PAGE
+========================= */
+
+.museum-page {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+
+    overflow-y: auto;
+
+    background: #f3e8df;
+    color: #42272d;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 1s ease;
+}
+
+.museum-page.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.museum-header {
+    width: min(1100px, 90%);
+    margin: auto;
+    padding: 30px 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid rgba(66, 39, 45, 0.2);
+
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.museum-header p {
+    margin: 0;
+}
+
+.museum-header span {
+    color: #8e6872;
+}
+
+.museum-title {
+    width: min(900px, 88%);
+    margin: 100px auto 0;
+    text-align: center;
+}
+
+.museum-title > p:first-child {
+    color: #a87583;
+    font-size: 11px;
+    letter-spacing: 5px;
+}
+
+.museum-title h2 {
+    margin: 25px 0;
+
+    font-size: clamp(55px, 10vw, 120px);
+    line-height: 0.82;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+
+.museum-title h2 em {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+.museum-subtitle {
+    max-width: 430px;
+    margin: 35px auto 0;
+
+    color: #765d64;
+    font-size: 13px;
+    line-height: 1.8;
+    letter-spacing: 1px;
+}
+
+.museum-line {
+    width: 1px;
+    height: 120px;
+    margin: 70px auto;
+
+    background: #a87583;
+}
+/* =========================
+   PHOTO GALLERY
+========================= */
+
+.photo-gallery {
+    width: min(1100px, 90%);
+    margin: 100px auto 160px;
+}
+
+.gallery-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.gallery-heading p {
+    color: #a87583;
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.gallery-heading h3 {
+    margin: 18px 0 0;
+
+    font-size: clamp(40px, 7vw, 75px);
+    font-weight: 400;
+    line-height: 0.9;
+}
+
+.gallery-heading h3 em {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: block;
+
+    object-fit: cover;
+
+    filter: saturate(0.85);
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.03);
+    filter: saturate(1);
+}
+.gallery-grid img {
+    width: 100%;
+    height: 240px;
+    display: block;
+    object-fit: cover;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+/* =========================
+   FIX FIRST MEMORY
+========================= */
+
+.memory-content {
+    display: grid !important;
+    grid-template-columns: 1.1fr 0.9fr !important;
+    gap: 80px !important;
+    align-items: center !important;
+}
+
+.memory-photo {
+    width: 100% ;
+    aspect-ratio: 4 / 5 !important;
+    overflow: hidden !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    background: #e8d8d0 !important;
+}
+
+.memory-photo img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    object-fit: cover !important;
+}
+/* =========================
+   FIRST MEMORY - ADJUST
+========================= */
+
+.memory-content {
+    grid-template-columns: 0.8fr 1.2fr !important;
+    gap: 65px !important;
+}
+
+/* ลดขนาดรูป */
+.memory-photo {
+    width: 60% !important;
+    margin: auto;
+}
+
+/* เพิ่มขนาดข้อความ */
+.memory-text h3 {
+    font-size: clamp(50px, 6vw, 82px) !important;
+}
+
+.memory-text > p:not(.memory-small) {
+    font-size: 16px !important;
+    line-height: 1.9 !important;
+}
+
+.memory-small {
+    font-size: 12px !important;
+    letter-spacing: 4px;
+}
+
+.memory-date {
+    font-size: 11px !important;
+}
+/* =========================
+   EXHIBITION LABEL
+========================= */
+
+.gallery-heading p {
+    display: inline-block;
+    margin: 0 0 18px;
+
+    padding: 7px 16px;
+
+    border: 1px solid #a87583;
+
+    color: #8e6872;
+    font-size: 10px;
+    letter-spacing: 3px;
+
+    line-height: 1;
+}
+
+.gallery-heading h3 {
+    margin: 0 !important;
+    font-size: clamp(45px, 7vw, 78px) !important;
+    line-height: 0.95 !important;
+}
+/* =========================
+   MEMORY LABEL
+========================= */
+
+.memory-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 0;
+
+    border-top: 1px solid rgba(66, 39, 45, 0.2);
+    border-bottom: 1px solid rgba(66, 39, 45, 0.2);
+
+    color: #8e6872;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.memory-label span {
+    display: block;
+}
+
+.memory-label span:last-child {
+    text-align: right;
+}
+/* =========================
+   IMAGE VIEWER
+========================= */
+
+.image-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(35, 22, 27, 0.92);
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.35s ease;
+}
+
+.image-viewer.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-viewer img {
+    max-width: 85%;
+    max-height: 85vh;
+
+    object-fit: contain;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+
+    transform: scale(0.92);
+    transition: 0.35s ease;
+}
+
+.image-viewer.show img {
+    transform: scale(1);
+}
+
+#viewerClose {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+
+    border: none;
+    background: transparent;
+
+    color: white;
+    font-size: 40px;
+    font-weight: 200;
+
+    cursor: pointer;
+}
+
+#viewerClose:hover {
+    transform: scale(1.1);
+}
+/* =========================
+   IMAGE VIEWER ARROWS
+========================= */
+
+.viewer-arrow {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 55px;
+    height: 55px;
+
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.08);
+
+    color: white;
+
+    font-size: 25px;
+    font-weight: 300;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.3s ease;
+}
+
+.viewer-arrow:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.7);
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+/* ลูกศรซ้าย */
+
+.viewer-prev {
+    left: 35px;
+}
+
+
+/* ลูกศรขวา */
+
+.viewer-next {
+    right: 35px;
+}
+
+
+/* ปุ่มปิด */
+
+#viewerClose {
+    transition: 0.3s ease;
+}
+
+#viewerClose:hover {
+    transform: rotate(90deg) scale(1.1);
+}
+
+
+/* รูป */
+
+.image-viewer img {
+    border: 8px solid #f3e8df;
+    box-sizing: border-box;
+}
+
+
+/* มือถือ */
+
+@media (max-width: 600px) {
+
+    .viewer-arrow {
+        width: 45px;
+        height: 45px;
+
+        font-size: 20px;
+    }
+
+    .viewer-prev {
+        left: 12px;
+    }
+
+    .viewer-next {
+        right: 12px;
+    }
+
+    .image-viewer img {
+        max-width: 78%;
+        max-height: 75vh;
+    }
+
+}
+/* =========================
+   GALLERY EXHIBITION STYLE
+========================= */
+
+.gallery-item {
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    display: block;
+
+    object-fit: cover;
+
+    filter: saturate(0.85);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+
+/* ตอนเอาเมาส์ไปวางบนรูป */
+
+.gallery-item:hover img {
+    transform: scale(1.02);
+    filter: saturate(1);
+}
+
+
+/* ชื่อ MEMORY */
+
+.gallery-item p {
+    margin: 15px 0 5px;
+
+    color: #42272d;
+
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+
+/* คำบรรยาย */
+
+.gallery-item span {
+    display: block;
+
+    color: #9b737d;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    line-height: 1.5;
+}
+/* =========================
+   GALLERY DATE
+========================= */
+
+.gallery-item small {
+    display: block;
+
+    margin-top: 12px;
+    padding-top: 10px;
+
+    border-top: 1px solid rgba(66, 39, 45, 0.18);
+
+    color: #a87583;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+/* =========================
+   GALLERY TEXT FIX
+========================= */
+
+.gallery-item {
+    display: block !important;
+    width: 100%;
+}
+
+.gallery-item p {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    margin: 15px 0 5px !important;
+
+    color: #42272d !important;
+
+    font-size: 12px !important;
+    letter-spacing: 3px !important;
+}
+
+.gallery-item span {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    color: #9b737d !important;
+
+    font-size: 10px !important;
+    letter-spacing: 2px !important;
+}
+
+.gallery-item small {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    margin-top: 12px !important;
+    padding-top: 10px !important;
+
+    border-top: 1px solid rgba(66, 39, 45, 0.18);
+
+    color: #a87583 !important;
+
+    font-size: 9px !important;
+    letter-spacing: 2px !important;
+}
+/* =========================
+   FIX GALLERY TEXT
+========================= */
+
+/* =========================
+   MUSEUM NAVIGATION
+========================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+.museum-nav {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.museum-nav a {
+    position: relative;
+    color: #765d64;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.museum-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+
+    width: 0;
+    height: 1px;
+
+    background: #a87583;
+
+    transition: 0.3s;
+}
+
+.museum-nav a:hover {
+    color: #42272d;
+}
+
+.museum-nav a:hover::after {
+    width: 100%;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .museum-header {
+        font-size: 9px;
+    }
+
+    .museum-nav {
+        gap: 12px;
+    }
+
+    .museum-nav a {
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+
+}
+/* =========================
+   GALLERY - SHOW IMAGE ONLY
+========================= */
+
+.gallery-item p,
+.gallery-item span,
+.gallery-item small {
+    display: none !important;
+}
+/* =========================
+   IMAGE VIEWER INFO
+========================= */
+
+.viewer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+}
+
+.viewer-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.viewer-info p {
+    margin: 0 0 8px;
+    color: #d99aaa;
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.viewer-info h3 {
+    margin: 0 0 12px;
+    color: #f3e8df;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+.viewer-info span {
+    color: #b9a8b5;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+
+/* รูปตอนเปิดใหญ่ */
+
+.viewer-content img {
+    max-width: 75vw;
+    max-height: 65vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+
+/* มือถือ */
+
+@media (max-width: 600px) {
+
+    .viewer-content {
+        max-width: 82%;
+    }
+
+    .viewer-content img {
+        max-width: 100%;
+        max-height: 60vh;
+    }
+
+    .viewer-info h3 {
+        font-size: 18px;
+    }
+
+}
+/* =========================
+   VIEWER OPEN ANIMATION
+========================= */
+
+.viewer-content img {
+    opacity: 0;
+    transform: scale(0.88);
+    transition:
+        opacity 0.5s ease,
+        transform 0.6s cubic-bezier(.2,.8,.2,1);
+}
+
+.image-viewer.show .viewer-content img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+.viewer-info {
+    opacity: 0;
+    transform: translateY(15px);
+    transition:
+        opacity 0.5s ease 0.15s,
+        transform 0.5s ease 0.15s;
+}
+
+.image-viewer.show .viewer-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* =========================
+   GALLERY EXHIBITION STYLE
+========================= */
+
+.photo-gallery {
+    padding-top: 40px;
+}
+
+
+/* แต่ละรูป */
+
+.gallery-item {
+    position: relative;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-6px);
+}
+
+
+/* รูป */
+
+.gallery-item img {
+    cursor: pointer;
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.02);
+    filter: saturate(1);
+}
+
+
+/* เส้นเล็กใต้ Gallery */
+
+.gallery-heading {
+    position: relative;
+}
+
+.gallery-heading::after {
+    content: "";
+
+    display: block;
+
+    width: 45px;
+    height: 1px;
+
+    margin: 30px auto 0;
+
+    background: #a87583;
+}
+/* =========================
+   GALLERY NUMBER
+========================= */
+
+.gallery-item {
+    position: relative;
+}
+
+.gallery-item::before {
+    content: "✦";
+
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    z-index: 2;
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(243, 232, 223, 0.9);
+
+    color: #8e6872;
+
+    font-size: 12px;
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover::before {
+    opacity: 1;
+}
+/* =========================
+   LOVE LETTER
+========================= */
+
+.letter-section {
+    width: min(900px, 88%);
+    margin: 150px auto 180px;
+    text-align: center;
+}
+
+.letter-label {
+    color: #a87583;
+    font-size: 10px;
+    letter-spacing: 5px;
+    margin-bottom: 35px;
+}
+
+.letter-card {
+    padding: 70px 50px;
+    background: #eadbd2;
+    border: 1px solid rgba(66, 39, 45, 0.15);
+    box-shadow: 0 20px 50px rgba(66, 39, 45, 0.08);
+}
+
+.letter-small {
+    margin: 0 0 25px;
+    color: #a87583;
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.letter-card h3 {
+    margin: 0;
+    color: #42272d;
+    font-size: clamp(38px, 6vw, 65px);
+    line-height: 0.9;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.letter-card h3 em {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+.letter-line {
+    width: 45px;
+    height: 1px;
+    margin: 35px auto;
+    background: #a87583;
+}
+
+.letter-text {
+    max-width: 560px;
+    margin: 0 auto 22px;
+    color: #765d64;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.letter-sign {
+    margin-top: 45px;
+    color: #9b737d;
+    font-size: 10px;
+    line-height: 2;
+    letter-spacing: 4px;
+}
+
+.letter-sign em {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+/* =========================
+   LETTER SCROLL ANIMATION
+========================= */
+
+.letter-card {
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.letter-card.show-letter {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* =========================
+   TIMELINE EXHIBITION
+========================= */
+
+.timeline-section {
+    width: min(900px, 88%);
+    margin: 150px auto 180px;
+}
+
+.timeline-label {
+    text-align: center;
+    color: #a87583;
+    font-size: 10px;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+}
+
+.timeline-heading {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.timeline-heading p {
+    margin: 0 0 20px;
+    color: #9b737d;
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.timeline-heading h3 {
+    margin: 0;
+    color: #42272d;
+    font-size: clamp(45px, 7vw, 75px);
+    line-height: 0.88;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.timeline-heading h3 em {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+
+/* รายการ Timeline */
+
+.timeline-list {
+    position: relative;
+}
+
+
+/* เส้นตรงกลาง */
+
+.timeline-list::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    width: 1px;
+
+    background: rgba(66, 39, 45, 0.2);
+
+    transform: translateX(-50%);
+}
+
+
+/* แต่ละเหตุการณ์ */
+
+.timeline-item {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1px 1fr;
+
+    gap: 35px;
+
+    min-height: 150px;
+
+    align-items: center;
+}
+
+
+/* เลข */
+
+.timeline-number {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f3e8df;
+
+    border: 1px solid #a87583;
+
+    border-radius: 50%;
+
+    color: #8e6872;
+
+    font-size: 10px;
+    letter-spacing: 1px;
+
+    z-index: 2;
+}
+
+
+/* วันที่ */
+
+.timeline-date {
+    text-align: right;
+
+    color: #a87583;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+
+/* ข้อความ */
+
+.timeline-text {
+    grid-column: 3;
+
+    padding-left: 10px;
+}
+
+.timeline-text h4 {
+    margin: 0 0 10px;
+
+    color: #42272d;
+
+    font-size: 20px;
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+}
+
+.timeline-text p {
+    margin: 0;
+
+    color: #765d64;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+/* สลับ
+/* =========================
+   TIMELINE SCROLL ANIMATION
+========================= */
+
+.timeline-item {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.timeline-item.show-timeline {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* =========================
+   KEEPSAKE EXHIBITION
+========================= */
+
+.keepsake-section {
+    width: min(900px, 88%);
+    margin: 150px auto 180px;
+    text-align: center;
+}
+
+.keepsake-label {
+    margin-bottom: 35px;
+    color: #a87583;
+    font-size: 10px;
+    letter-spacing: 5px;
+}
+
+.keepsake-card {
+    position: relative;
+
+    padding: 80px 40px;
+
+    background: #eadbd2;
+
+    border: 1px solid rgba(66, 39, 45, 0.15);
+
+    box-shadow:
+        0 25px 60px rgba(66, 39, 45, 0.12);
+
+    overflow: hidden;
+}
+
+
+/* ตกแต่งมุม */
+
+.keepsake-card::before,
+.keepsake-card::after {
+    content: "✦";
+
+    position: absolute;
+
+    color: #a87583;
+
+    font-size: 18px;
+}
+
+.keepsake-card::before {
+    top: 25px;
+    left: 30px;
+}
+
+.keepsake-card::after {
+    right: 30px;
+    bottom: 25px;
+}
+
+
+/* ข้อความ */
+
+.keepsake-small {
+    margin: 0 0 25px;
+
+    color: #a87583;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+}
+
+.keepsake-card h3 {
+    margin: 0;
+
+    color: #42272d;
+
+    font-size: clamp(45px, 7vw, 75px);
+
+    line-height: 0.88;
+
+    font-weight: 400;
+
+    letter-spacing: 3px;
+}
+
+.keepsake-card h3 em {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+.keepsake-line {
+    width: 45px;
+    height: 1px;
+
+    margin: 35px auto;
+
+    background: #a87583;
+}
+
+.keepsake-text {
+    margin: 0 auto 35px;
+
+    color: #765d64;
+
+    font-size: 14px;
+
+    line-height: 2;
+}
+
+
+/* ปุ่ม */
+
+.keepsake-button {
+    position: relative;
+
+    padding: 15px 28px;
+
+    border: 1px solid #a87583;
+
+    background: transparent;
+
+    color: #765d64;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.keepsake-button:hover {
+    background: #a87583;
+    color: #f3e8df;
+
+    transform: translateY(-2px);
+}
+
+
+/* มือถือ */
+
+@media (max-width: 600px) {
+
+    .keepsake-card {
+        font-size: 13px;
+    }
+
+}
+/* =========================
+   KEEPSAKE VIEWER
+========================= */
+
+.keepsake-viewer {
+    position: fixed;
+    inset: 0;
+
+    z-index: 150;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(43, 28, 47, 0.94);
+
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+}
+
+.keepsake-viewer.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ปุ่มปิด */
+
+.keepsake-close {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    border: none;
+    background: transparent;
+
+    color: #f3e8df;
+
+    font-size: 38px;
+    font-weight: 200;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.keepsake-close:hover {
+    transform: rotate(90deg);
+    color: #d99aaa;
+}
+
+
+/* เนื้อหา */
+
+.keepsake-content {
+    text-align: center;
+
+    color: #f3e8df;
+
+    transform: translateY(25px);
+    opacity: 0;
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.keepsake-viewer.show .keepsake-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ข้อความเล็ก */
+
+.keepsake-viewer-small {
+    margin: 0 0 30px;
+
+    color: #d99aaa;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+}
+
+
+/* หัวใจ */
+
+.keepsake-heart {
+    margin-bottom: 25px;
+
+    color: #d99aaa;
+
+    font-size: 45px;
+
+    animation: keepsakeHeart 2s ease-in-out infinite;
+}
+
+@keyframes keepsakeHeart {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+
+}
+
+
+/* หัวข้อ */
+
+.keepsake-content h3 {
+    margin: 0;
+
+    font-size: clamp(50px, 8vw, 85px);
+
+    line-height: 0.85;
+
+    font-weight: 400;
+
+    letter-spacing: 4px;
+}
+
+.keepsake-content h3 em {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+
+/* เส้น */
+
+.keepsake-viewer-line {
+    width: 50px;
+    height: 1px;
+
+    margin: 35px auto;
+
+    background: #a87583;
+}
+
+
+/* ข้อความ */
+
+.keepsake-content > p:not(.keepsake-viewer-small) {
+    margin: 0;
+
+    color: #b9a8b5;
+
+    font-size: 13px;
+
+    line-height: 2;
+}
+
+
+/* ชื่อ Museum */
+
+.keepsake-content > span {
+    display: block;
+
+    margin-top: 40px;
+
+    color: #a87583;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+}
+
+
+/* มือถือ */
+
+@media (max-width: 600px) {
+
+    .keepsake-viewer {
+        padding: 20px;
+    }
+
+    .keepsake-close {
+        top: 15px;
+        right: 20px;
+    }
+
+}
+/* =========================
+   ENDING EXHIBITION
+========================= */
+
+.ending-section {
+    min-height: 80vh;
+    width: min(900px, 88%);
+    margin: 150px auto 0;
+    padding: 120px 0 160px;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* EXHIBITION 05 */
+.ending-label {
+    margin: 0 0 35px;
+
+    color: #a87583;
+    font-size: 10px;
+    letter-spacing: 5px;
+}
+
+/* ดาวตรงกลาง */
+.ending-symbol {
+    margin-bottom: 25px;
+
+    color: #d99aaa;
+    font-size: 20px;
+}
+
+/* OUR STORY CONTINUES */
+.ending-section h3 {
+    margin: 0;
+
+    color: #42272d;
+
+    font-size: clamp(50px, 8vw, 95px);
+    line-height: .85;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+
+.ending-section h3 em {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+/* เส้นคั่น */
+.ending-line {
+    width: 50px;
+    height: 1px;
+
+    margin: 40px auto;
+
+    background: #a87583;
+}
+
+/* ข้อความ */
+.ending-text {
+    margin: 0;
+
+    color: #765d64;
+
+    font-size: 14px;
+    line-height: 2;
+}
+
+/* HAPPY ANNIVERSARY */
+.ending-message {
+    margin: 45px 0 15px;
+
+    color: #a87583;
+
+    font-size: 11px;
+    letter-spacing: 4px;
+}
+
+/* MUSEUM OF US · 2026 */
+.ending-date {
+    margin: 0;
+
+    color: #9b737d;
+
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+
+/* =========================
+   ENDING - MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .ending-section {
+        min-height: 70vh;
+        padding: 90px 0 120px;
+    }
+
+    .ending-text {
+        font-size: 13px;
+    }
+
+}
+/* =========================
+   ENDING ANIMATION
+========================= */
+
+.ending-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
+
+.ending-section.show-ending {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ดาวค่อย ๆ ปรากฏ */
+.ending-symbol {
+    opacity: 0;
+    transform: scale(.6);
+    transition:
+        opacity .8s ease .3s,
+        transform .8s ease .3s;
+}
+
+.ending-section.show-ending .ending-symbol {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* หัวข้อ */
+.ending-section h3 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 1s ease .45s,
+        transform 1s ease .45s;
+}
+
+.ending-section.show-ending h3 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* เส้น */
+.ending-line {
+    transform: scaleX(0);
+    transition: transform .8s ease .8s;
+}
+
+.ending-section.show-ending .ending-line {
+    transform: scaleX(1);
+}
+
+
+/* ข้อความ */
+.ending-text {
+    opacity: 0;
+    transform: translateY(15px);
+    transition:
+        opacity .8s ease 1s,
+        transform .8s ease 1s;
+}
+
+.ending-section.show-ending .ending-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* HAPPY ANNIVERSARY */
+.ending-message {
+    opacity: 0;
+    transform: translateY(15px);
+    transition:
+        opacity .8s ease 1.2s,
+        transform .8s ease 1.2s;
+}
+
+.ending-section.show-ending .ending-message {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* วันที่ด้านล่าง */
+.ending-date {
+    opacity: 0;
+    transition: opacity .8s ease 1.4s;
+}
+
+.ending-section.show-ending .ending-date {
+    opacity: 1;
+}
+/* =========================
+   GALLERY SCROLL ANIMATION
+========================= */
+
+.gallery-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+/* เมื่อถูกเปิด */
+.gallery-item.show-gallery {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ให้แต่ละรูปขึ้นไม่พร้อมกัน */
+.gallery-item:nth-child(1) {
+    transition-delay: .05s;
+}
+
+.gallery-item:nth-child(2) {
+    transition-delay: .15s;
+}
+
+.gallery-item:nth-child(3) {
+    transition-delay: .25s;
+}
+
+.gallery-item:nth-child(4) {
+    transition-delay: .35s;
+}
+
+.gallery-item:nth-child(5) {
+    transition-delay: .45s;
+}
+
+.gallery-item:nth-child(6) {
+    transition-delay: .55s;
+}
+
+.gallery-item:nth-child(7) {
+    transition-delay: .65s;
+}
+
+.gallery-item:nth-child(8) {
+    transition-delay: .75s;
+}
+/* =========================
+   IMAGE VIEWER - PREMIUM EFFECT
+========================= */
+
+.image-viewer {
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+/* รูปตอนเปิด */
+.image-viewer.show .viewer-content img {
+    animation: viewerImageOpen .8s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes viewerImageOpen {
+
+    0% {
+        opacity: 0;
+        transform: scale(.82);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* ข้อมูลใต้รูป */
+.image-viewer.show .viewer-info {
+    animation: viewerInfoOpen .7s ease .25s forwards;
+}
+
+@keyframes viewerInfoOpen {
+
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ปุ่มลูกศร */
+.viewer-arrow {
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
+
+.viewer-arrow:hover {
+    transform: scale(1.1);
+}
+
+
+/* ปุ่มปิด */
+#viewerClose {
+    transition:
+        transform .3s ease,
+        opacity .3s ease;
+}
+
+#viewerClose:hover {
+    transform: rotate(90deg);
+    opacity: .7;
+}
+/* =========================
+   FIRST MEMORY - FEATURED ARTWORK
+========================= */
+
+.memory-section {
+    position: relative;
+    width: min(1100px, 90%);
+    margin: 120px auto 160px;
+    padding: 30px 0;
+}
+
+
+/* เส้นเล็กด้านบน */
+.memory-section::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background: rgba(66, 39, 45, .15);
+}
+
+
+/* ป้าย MEMORY */
+.memory-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 45px;
+
+    color: #a87583;
+
+    font-size: 9px;
+    letter-spacing: 4px;
+}
+
+
+/* พื้นที่รูป + ข้อความ */
+.memory-content {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: .9fr 1.1fr;
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+
+/* =========================
+   FRAME รอบรูป
+========================= */
+
+.memory-photo {
+    position: relative;
+
+    width: 100% !important;
+
+    padding: 14px;
+
+    background: #eee0d6;
+
+    border: 1px solid rgba(66, 39, 45, .18);
+
+    box-shadow:
+        0 20px 45px rgba(66, 39, 45, .12);
+
+    transform: rotate(-1.5deg);
+
+    transition:
+        transform .5s ease,
+        box-shadow .5s ease;
+}
+
+
+/* กรอบชั้นใน */
+.memory-photo::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    border: 1px solid rgba(168, 117, 131, .35);
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* จุดตกแต่งมุม */
+.memory-photo::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: -18px;
+    right: -18px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f3e8df;
+
+    border: 1px solid rgba(168, 117, 131, .35);
+
+    border-radius: 50%;
+
+    color: #a87583;
+
+    font-size: 13px;
+
+    z-index: 3;
+}
+
+
+/* รูป */
+.memory-photo img {
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    object-fit: cover;
+
+    position: relative;
+
+    z-index: 1;
+
+    transition: transform .6s ease;
+}
+
+
+/* Hover */
+.memory-photo:hover {
+    transform: rotate(0deg) translateY(-6px);
+
+    box-shadow:
+        0 30px 60px rgba(66, 39, 45, .18);
+}
+
+.memory-photo:hover img {
+    transform: scale(1.02);
+}
+
+
+/* =========================
+   ข้อความด้านข้าง
+========================= */
+
+.memory-text {
+    position: relative;
+
+    padding: 20px 0;
+}
+
+
+/* เลข 001 ด้านหลัง */
+.memory-text::before {
+    content: "001";
+
+    position: absolute;
+
+    top: -55px;
+    right: 0;
+
+    color: rgba(168, 117, 131, .12);
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(80px, 12vw, 150px);
+
+    line-height: 1;
+
+    pointer-events: none;
+}
+
+
+/* THE FIRST MEMORY */
+.memory-small {
+    position: relative;
+
+    margin-bottom: 18px;
+
+    color: #a87583;
+
+    font-size: 10px !important;
+
+    letter-spacing: 5px !important;
+}
+
+
+/* หัวข้อ */
+.memory-text h3 {
+    position: relative;
+
+    margin: 0 0 25px;
+
+    color: #42272d;
+
+    font-size: clamp(48px, 6vw, 78px) !important;
+
+    line-height: .9;
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+}
+
+.memory-text h3 em {
+    font-family: Georgia, serif;
+
+    font-weight: normal;
+}
+
+
+/* เส้นใต้ */
+.memory-text::after {
+    content: "";
+
+    display: block;
+
+    width: 45px;
+    height: 1px;
+
+    margin: 30px 0;
+
+    background: #a87583;
+}
+
+
+/* คำบรรยาย */
+.memory-text > p:not(.memory-small) {
+    position: relative;
+
+    max-width: 400px;
+
+    margin: 0 0 25px;
+
+    color: #765d64;
+
+    font-size: 15px !important;
+
+    line-height: 1.9 !important;
+}
+
+
+/* วันที่ */
+.memory-date {
+    display: inline-block;
+
+    color: #9b737d;
+
+    font-size: 10px !important;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .memory-section {
+        margin: 90px auto 120px;
+    }
+
+    .memory-content {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+    .memory-photo {
+        width: 82% !important;
+
+        margin: 0 auto !important;
+    }
+
+    .memory-text {
+        text-align: center;
+    }
+
+    .memory-text::after {
+        margin: 25px auto;
+    }
+
+    .memory-text > p:not(.memory-small) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .memory-label {
+        font-size: 8px;
+    }
+}
+/* =========================
+   MYSTERY MEMORY
+========================= */
+
+.mystery-memory {
+    cursor: pointer;
+}
+
+.mystery-card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #eadbd2 0%,
+            #dfccc9 100%
+        );
+
+    border: 1px solid rgba(66, 39, 45, .18);
+
+    box-shadow:
+        0 15px 35px rgba(66, 39, 45, .10);
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform .5s ease,
+        box-shadow .5s ease;
+}
+
+
+/* กรอบด้านใน */
+.mystery-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border: 1px dashed rgba(168, 117, 131, .45);
+
+    pointer-events: none;
+}
+
+
+/* ดาวเล็ก ๆ */
+.mystery-card::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 20px;
+    right: 22px;
+
+    color: #a87583;
+
+    font-size: 12px;
+}
+
+
+/* เครื่องหมาย ? */
+.mystery-card span {
+    color: #765d64;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(70px, 9vw, 110px);
+
+    font-weight: normal;
+
+    line-height: 1;
+
+    transition:
+        transform .5s ease,
+        color .5s ease;
+}
+
+
+/* Hover */
+.mystery-memory:hover .mystery-card {
+    transform: translateY(-6px) rotate(-1deg);
+
+    box-shadow:
+        0 25px 50px rgba(66, 39, 45, .18);
+}
+
+.mystery-memory:hover .mystery-card span {
+    transform: scale(1.12) rotate(5deg);
+
+    color: #a87583;
+}
+/* =========================
+   MYSTERY ? CARD FIX
+========================= */
+
+.gallery-item.mystery-memory {
+    display: block !important;
+    position: relative;
+    width: 100% !important;
+    cursor: pointer;
+}
+
+.gallery-item.mystery-memory .mystery-card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    background: #eadbd2;
+
+    border: 1px solid rgba(66, 39, 45, .2);
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+/* กรอบด้านใน */
+.gallery-item.mystery-memory .mystery-card::before {
+    content: "";
+
+    position: absolute;
+    inset: 12px;
+
+    border: 1px dashed #a87583;
+}
+
+/* เครื่องหมาย ? */
+.gallery-item.mystery-memory .mystery-card span {
+    display: block !important;
+
+    position: relative;
+    z-index: 5;
+
+    color: #765d64 !important;
+
+    font-family: Georgia, serif;
+
+    font-size: 100px !important;
+
+    line-height: 1;
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+}
+
+/* ดาวมุม */
+.gallery-item.mystery-memory .mystery-card::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 18px;
+    right: 20px;
+
+    color: #a87583;
+
+    font-size: 14px;
+}
+/* =========================
+   EXHIBITION 03 - DRAWING
+========================= */
+
+.drawing-section {
+    width: min(900px, 88%);
+    margin: 150px auto 180px;
+    text-align: center;
+}
+
+
+/* ป้าย Exhibition */
+.drawing-label {
+    margin-bottom: 35px;
+
+    color: #a87583;
+
+    font-size: 10px;
+    letter-spacing: 5px;
+}
+
+
+/* หัวข้อ */
+.drawing-heading {
+    margin-bottom: 55px;
+}
+
+.drawing-heading p {
+    margin: 0 0 18px;
+
+    color: #a87583;
+
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.drawing-heading h3 {
+    margin: 0;
+
+    color: #42272d;
+
+    font-size: clamp(50px, 8vw, 90px);
+
+    line-height: .85;
+
+    font-weight: 400;
+
+    letter-spacing: 3px;
+}
+
+.drawing-heading h3 em {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.drawing-card {
+    position: relative;
+
+    padding: 30px;
+
+    background: #eadbd2;
+
+    border: 1px solid rgba(66, 39, 45, .15);
+
+    box-shadow:
+        0 25px 60px rgba(66, 39, 45, .12);
+}
+
+
+/* ด้านบนของการ์ด */
+.drawing-card-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+    color: #a87583;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================
+   กระดาษวาดรูป
+========================= */
+
+.drawing-paper {
+    position: relative;
+
+    min-height: 520px;
+
+    padding: 55px 45px 35px;
+
+    background: #f8f1eb;
+
+    border: 1px solid rgba(66, 39, 45, .12);
+
+    box-shadow:
+        0 8px 20px rgba(66, 39, 45, .06);
+}
+
+
+/* หัวกระดาษ */
+.drawing-paper-title {
+    color: #42272d;
+
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+
+    line-height: 1.1;
+
+    letter-spacing: 2px;
+}
+
+.drawing-paper-title em {
+    color: #a87583;
+
+    font-style: italic;
+}
+
+
+/* พื้นที่วาด */
+.drawing-space {
+    position: relative;
+
+    height: 320px;
+
+    margin-top: 35px;
+
+    border: 1px dashed rgba(168, 117, 131, .45);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* ดาว */
+.drawing-space span {
+    color: #d99aaa;
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+
+/* ข้อความในพื้นที่วาด */
+.drawing-space p {
+    margin: 0;
+
+    color: #b19ca3;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+
+/* ด้านล่างกระดาษ */
+.drawing-paper-bottom {
+    position: absolute;
+
+    left: 45px;
+    right: 45px;
+    bottom: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #9b737d;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+}
+
+
+/* ข้อความใต้การ์ด */
+.drawing-note {
+    margin: 30px 0 0;
+
+    color: #765d64;
+
+    font-size: 13px;
+
+    line-height: 2;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .drawing-card {
+        padding: 18px;
+    }
+
+    .drawing-paper {
+        min-height: 430px;
+
+        padding: 40px 25px 30px;
+    }
+
+    .drawing-space {
+        height: 260px;
+    }
+
+    .drawing-paper-bottom {
+        left: 25px;
+        right: 25px;
+    }
+
+    .drawing-paper-title {
+        font-size: 20px;
+    }
+
+}
+/* =========================
+   LUCKY CARD VIEWER
+========================= */
+
+.lucky-viewer {
+    position: fixed;
+    inset: 0;
+
+    z-index: 200;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(43, 28, 35, .95);
+
+    backdrop-filter: blur(12px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+.lucky-viewer.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ปุ่มปิด */
+
+.lucky-close {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(243,232,223,.35);
+
+    background: transparent;
+
+    color: #f3e8df;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.lucky-close:hover {
+    transform: rotate(90deg);
+}
+
+
+/* เนื้อหา */
+
+.lucky-content {
+    width: min(900px, 95%);
+
+    text-align: center;
+
+    color: #f3e8df;
+}
+
+
+/* หัว */
+
+.lucky-small {
+    margin: 0 0 15px;
+
+    color: #d99aaa;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+}
+
+.lucky-content h3 {
+    margin: 0 0 40px;
+
+    font-size: clamp(35px, 6vw, 65px);
+
+    line-height: .9;
+
+    font-weight: 400;
+
+    letter-spacing: 3px;
+}
+
+.lucky-content h3 em {
+    font-family: Georgia, serif;
+
+    font-weight: normal;
+}
+
+
+/* =========================
+   การ์ด 5 ใบ
+========================= */
+
+.lucky-cards {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+/* การ์ด */
+
+.lucky-card {
+    position: relative;
+
+    width: 125px;
+    height: 175px;
+
+    border: 1px solid rgba(243,232,223,.35);
+
+    background: #eadbd2;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.25);
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+
+/* ลายกรอบ */
+
+.lucky-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 9px;
+
+    border: 1px dashed #a87583;
+}
+
+
+/* ดาว */
+
+.lucky-card::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 17px;
+    left: 0;
+    right: 0;
+
+    color: #a87583;
+
+    font-size: 14px;
+}
+
+
+/* ? */
+
+.lucky-card span {
+    position: relative;
+
+    z-index: 2;
+
+    color: #765d64;
+
+    font-family: Georgia, serif;
+
+    font-size: 65px;
+}
+
+
+/* Hover */
+
+.lucky-card:hover {
+    transform: translateY(-15px) rotate(-2deg);
+
+    box-shadow:
+        0 30px 45px rgba(0,0,0,.35);
+}
+
+.lucky-card:nth-child(even):hover {
+    transform: translateY(-15px) rotate(2deg);
+}
+
+
+/* ข้อความ */
+
+.lucky-hint {
+    margin: 30px 0 0;
+
+    color: #b9a8b5;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+.lucky-result {
+    display: none;
+
+    margin: 35px auto 0;
+
+    max-width: 400px;
+
+    padding: 35px 25px;
+
+    background: #eadbd2;
+
+    color: #42272d;
+
+    border: 1px solid rgba(168,117,131,.4);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.3);
+}
+
+.lucky-result.show {
+    display: block;
+
+    animation: luckyResult .7s ease;
+}
+
+@keyframes luckyResult {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* สัญลักษณ์ */
+
+.result-symbol {
+    margin-bottom: 15px;
+
+    color: #d99aaa;
+
+    font-size: 30px;
+}
+
+.lucky-result p {
+    margin: 0 0 10px;
+
+    color: #a87583;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+}
+
+.lucky-result h4 {
+    margin: 0 0 12px;
+
+    font-family: Georgia, serif;
+
+    font-size: 32px;
+
+    font-weight: normal;
+}
+
+.lucky-result span {
+    color: #765d64;
+
+    font-size: 13px;
+}
+
+
+/* ปุ่มสุ่มใหม่ */
+
+#luckyAgain {
+    display: block;
+
+    margin: 25px auto 0;
+
+    padding: 12px 22px;
+
+    border: 1px solid #a87583;
+
+    background: transparent;
+
+    color: #765d64;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+#luckyAgain:hover {
+    background: #a87583;
+
+    color: #f3e8df;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .lucky-cards {
+        flex-wrap: wrap;
+
+        max-width: 330px;
+
+        margin: auto;
+
+        gap: 12px;
+    }
+
+    .lucky-card {
+        width: 90px;
+        height: 130px;
+    }
+
+    .lucky-card span {
+        font-size: 50px;
+    }
+
+}
+/* =========================
+   LUCKY CARD VIEWER
+   ========================= */
+
+.lucky-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(20, 17, 14, 0.82);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+.lucky-viewer.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* CLOSE */
+
+.lucky-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.08);
+    color: white;
+
+    font-size: 28px;
+    font-weight: 300;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.lucky-close:hover {
+    background: white;
+    color: #2b2722;
+}
+
+
+/* CONTENT */
+
+.lucky-content {
+    width: min(900px, 100%);
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background: #f5f0e8;
+
+    border: 1px solid rgba(255,255,255,0.7);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.35);
+}
+
+
+/* SMALL TITLE */
+
+.lucky-small {
+    margin: 0 0 10px;
+
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    color: #8b7864;
+}
+
+
+/* MAIN TITLE */
+
+.lucky-content h3 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(32px, 6vw, 58px);
+
+    line-height: 0.95;
+
+    font-weight: 400;
+
+    color: #302a24;
+}
+
+.lucky-content h3 em {
+    font-weight: 400;
+    color: #9b7654;
+}
+
+
+/* HINT */
+
+.lucky-hint {
+    margin: 25px 0 20px;
+
+    font-size: 13px;
+
+    color: #81766b;
+}
+
+
+/* CARDS */
+
+.lucky-cards {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+
+    margin: 20px auto 30px;
+}
+
+
+/* EACH CARD */
+
+.lucky-card {
+    position: relative;
+
+    width: 125px;
+    height: 175px;
+
+    padding: 0;
+
+    border: 1px solid #c9b9a5;
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee2d2,
+            #d9c5ad
+        );
+
+    box-shadow:
+        0 8px 18px rgba(70,55,40,0.18);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* CARD DECORATION */
+
+.lucky-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 10px;
+
+    border: 1px solid rgba(100,75,50,0.35);
+
+    border-radius: 5px;
+
+    pointer-events: none;
+}
+
+.lucky-card::after {
+    content: "MUSEUM OF US";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 15px;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #806d5a;
+
+    text-align: center;
+}
+/* QUESTION MARK */
+
+.lucky-card span {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 62px;
+    height: 62px;
+
+    margin: 50px auto 0;
+
+    border: 1px solid #a68c72;
+
+    border-radius: 50%;
+
+    font-family: Georgia, serif;
+
+    font-size: 34px;
+
+    font-weight: 400;
+
+    color: #765d45;
+
+    background: rgba(255,255,255,0.45);
+}
+
+
+/* HOVER */
+
+.lucky-card:hover {
+    transform: translateY(-12px) rotate(-2deg);
+
+    box-shadow:
+        0 18px 30px rgba(70,55,40,0.25);
+}
+
+.lucky-card:nth-child(even):hover {
+    transform: translateY(-12px) rotate(2deg);
+}
+
+
+/* RESULT */
+
+.lucky-result {
+    display: none;
+
+    margin: 10px auto 0;
+
+    padding: 25px;
+
+    max-width: 500px;
+
+    border-top: 1px solid #cdbca8;
+
+    animation: luckyResultIn 0.45s ease;
+}
+
+.lucky-result.show {
+    display: block;
+}
+
+.result-symbol {
+    font-size: 28px;
+    color: #a17c57;
+}
+
+.lucky-result p {
+    margin: 5px 0;
+
+    font-size: 10px;
+    letter-spacing: 3px;
+
+    color: #8b7864;
+}
+
+.lucky-result h4 {
+    margin: 10px 0 5px;
+
+    font-family: Georgia, serif;
+
+    font-size: 32px;
+    font-weight: 400;
+
+    color: #302a24;
+}
+
+.lucky-result span {
+    display: block;
+
+    font-size: 13px;
+
+    color: #756b61;
+}
+
+
+/* AGAIN BUTTON */
+
+#luckyAgain {
+    margin-top: 20px;
+
+    padding: 11px 22px;
+
+    border: 1px solid #9d8872;
+
+    background: transparent;
+
+    color: #665442;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+#luckyAgain:hover {
+    background: #665442;
+    color: white;
+}
+/* ANIMATION */
+
+@keyframes luckyResultIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .lucky-viewer {
+        padding: 15px;
+    }
+
+    .lucky-content {
+        padding: 30px 15px;
+    }
+
+    .lucky-cards {
+        gap: 10px;
+    }
+
+    .lucky-card {
+        width: 95px;
+        height: 140px;
+    }
+
+    .lucky-card span {
+        width: 48px;
+        height: 48px;
+
+        margin-top: 38px;
+
+        font-size: 27px;
+    }
+
+    .lucky-card::after {
+        font-size: 6px;
+        bottom: 10px;
+    }
+
+}
+/* =========================================
+   LUCKY CARD - BEAUTIFUL MUSEUM STYLE
+   ========================================= */
+
+.lucky-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(118, 95, 70, 0.18),
+            rgba(20, 17, 14, 0.94)
+        );
+
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease;
+}
+
+.lucky-viewer.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* =========================================
+   CLOSE
+   ========================================= */
+
+.lucky-close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+
+    font-size: 28px;
+    font-weight: 300;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.lucky-close:hover {
+    background: #fff;
+    color: #332b24;
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+
+.lucky-content {
+    width: min(900px, 100%);
+
+    padding: 45px 30px 40px;
+
+    text-align: center;
+
+    color: #3d342b;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f7f1e8,
+            #eee3d4
+        );
+
+    border: 1px solid #d5c5b2;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.35),
+        inset 0 0 0 8px rgba(255,255,255,0.35);
+
+    position: relative;
+
+    animation: luckyContentIn 0.5s ease;
+}
+
+
+/* กรอบด้านใน */
+
+.lucky-content::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 14px;
+
+    border: 1px solid rgba(150,125,95,0.35);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   TEXT
+   ========================================= */
+
+.lucky-small {
+    margin: 0 0 12px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    color: #8b7358;
+}
+
+.lucky-content h3 {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(30px, 5vw, 48px);
+
+    line-height: 0.95;
+
+    letter-spacing: 2px;
+
+    font-weight: 400;
+
+    color: #302820;
+}
+
+.lucky-content h3 em {
+    font-style: italic;
+
+    color: #8b7358;
+}
+
+.lucky-hint {
+    margin: 18px 0 25px;
+
+    font-family:
+        "Noto Sans Thai",
+        "Leelawadee UI",
+        "Tahoma",
+        sans-serif;
+
+    font-size: 14px;
+
+    color: #756656;
+}
+
+
+/* =========================================
+   CARDS
+   ========================================= */
+
+.lucky-cards {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+    margin: 25px auto 30px;
+}
+
+
+.lucky-card {
+    position: relative;
+
+    width: 125px;
+    height: 180px;
+
+    padding: 0;
+
+    border: 1px solid #c8b59f;
+
+    border-radius: 6px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eee2d2,
+            #d6c1a8
+        );
+
+    box-shadow:
+        0 12px 25px rgba(70,55,40,0.20);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* กรอบด้านใน */
+
+.lucky-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 9px;
+
+    border: 1px solid rgba(113,91,68,0.5);
+
+    border-radius: 3px;
+}
+
+
+/* ลายตกแต่ง */
+
+.lucky-card::after {
+    content: "MUSEUM OF US";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 22px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color: rgba(70,55,40,0.65);
+}
+
+
+/* เลขการ์ด */
+
+.lucky-card span {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 2;
+
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #9d856b;
+
+    border-radius: 50%;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 20px;
+
+    letter-spacing: 2px;
+
+    color: #6d5945;
+
+    background: rgba(247,241,232,0.45);
+}
+
+
+/* hover */
+
+.lucky-card:hover {
+    transform:
+        translateY(-12px)
+        rotate(-2deg);
+
+    box-shadow:
+        0 25px 35px rgba(60,45,30,0.28);
+}
+
+
+/* สลับองศาแต่ละใบ */
+
+.lucky-card:nth-child(2):hover {
+    transform:
+        translateY(-12px)
+        rotate(2deg);
+}
+
+.lucky-card:nth-child(3):hover {
+    transform:
+        translateY(-12px)
+        rotate(-1deg);
+}
+
+.lucky-card:nth-child(4):hover {
+    transform:
+        translateY(-12px)
+        rotate(2deg);
+}
+
+.lucky-card:nth-child(5):hover {
+    transform:
+        translateY(-12px)
+        rotate(-2deg);
+}
+
+
+/* =========================================
+   RESULT
+   ========================================= */
+
+.lucky-result {
+    display: none;
+
+    margin: 20px auto 0;
+
+    padding: 25px;
+
+    max-width: 500px;
+
+    border-top: 1px solid #cdbba7;
+    border-bottom: 1px solid #cdbba7;
+
+    animation: luckyResultIn 0.5s ease;
+}
+
+.lucky-result.show {
+    display: block;
+}
+
+
+.result-symbol {
+    font-size: 25px;
+
+    color: #92775a;
+
+    margin-bottom: 8px;
+}
+
+
+.lucky-result p {
+    margin: 0 0 8px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #8b7358;
+}
+
+
+.lucky-result h4 {
+    margin: 0 0 10px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 32px;
+
+    font-weight: 400;
+
+    color: #342b23;
+}
+
+
+#resultText {
+    display: block;
+
+    margin-bottom: 20px;
+
+    font-family:
+        "Noto Sans Thai",
+        "Leelawadee UI",
+        "Tahoma",
+        sans-serif;
+
+    font-size: 14px;
+
+    color: #766757;
+}
+
+
+/* =========================================
+   PICK AGAIN
+   ========================================= */
+
+#luckyAgain {
+    padding: 11px 25px;
+
+    border: 1px solid #9d856b;
+
+    background: transparent;
+
+    color: #6d5945;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+#luckyAgain:hover {
+    background: #6d5945;
+
+    color: #fff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   ANIMATION
+   ========================================= */
+
+@keyframes luckyContentIn {
+
+    from {
+        opacity: 0;
+        transform: scale(0.94) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+}
+
+
+@keyframes luckyResultIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .lucky-content {
+        padding: 38px 18px 28px;
+    }
+
+    .lucky-cards {
+        gap: 10px;
+    }
+
+    .lucky-card {
+        width: 95px;
+        height: 145px;
+    }
+
+    .lucky-card span {
+        width: 48px;
+        height: 48px;
+
+        font-size: 17px;
+    }
+
+    .lucky-card::after {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .lucky-content h3 {
+        font-size: 32px;
+    }
+
+}
+/* =========================================
+   FINAL EXHIBITION
+   ========================================= */
+
+.ending-section {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding: 100px 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #f4ede3 0%,
+            #e5d8c8 45%,
+            #d2c0aa 100%
+        );
+
+    color: #352d26;
+}
+
+
+/* แสงตรงกลาง */
+
+.ending-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.55),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   STARS
+   ========================================= */
+
+.ending-stars {
+    position: absolute;
+
+    top: 80px;
+
+    display: flex;
+
+    gap: 35px;
+
+    font-family: Georgia, serif;
+
+    font-size: 18px;
+
+    color: #9b8061;
+
+    opacity: 0.7;
+}
+
+
+/* =========================================
+   LABEL
+   ========================================= */
+
+.ending-label {
+    position: relative;
+
+    margin: 0 0 28px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    color: #8c7357;
+}
+
+
+/* =========================================
+   SYMBOL
+   ========================================= */
+
+.ending-symbol {
+    position: relative;
+
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+
+    border: 1px solid #ad9578;
+
+    border-radius: 50%;
+
+    font-family: Georgia, serif;
+
+    font-size: 30px;
+
+    color: #8d7357;
+
+    animation: endingFloat 3s ease-in-out infinite;
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.ending-section h3 {
+    position: relative;
+
+    margin: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(42px, 9vw, 78px);
+
+    line-height: 0.9;
+
+    font-weight: 400;
+
+    letter-spacing: 3px;
+
+    color: #332b24;
+}
+
+
+.ending-section h3 em {
+    font-style: italic;
+
+    color: #91775a;
+}
+
+
+/* =========================================
+   LINE
+   ========================================= */
+
+.ending-line {
+    position: relative;
+
+    width: 90px;
+    height: 1px;
+
+    margin: 35px 0;
+
+    background: #a78d6d;
+}
+
+
+/* =========================================
+   MESSAGE
+   ========================================= */
+
+.ending-text {
+    position: relative;
+
+    margin: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    color: #5f5041;
+}
+
+
+.ending-thai {
+    position: relative;
+
+    margin: 20px 0 0;
+
+    font-family:
+        "Noto Sans Thai",
+        "Leelawadee UI",
+        Tahoma,
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    color: #756454;
+}
+
+
+/* =========================================
+   DATE
+   ========================================= */
+
+.ending-date {
+    position: relative;
+
+    margin: 35px 0 25px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: #91785b;
+}
+
+
+/* =========================================
+   EXIT BUTTON
+   ========================================= */
+
+.ending-exit {
+    position: relative;
+
+    padding: 12px 25px;
+
+    border: 1px solid #9b8163;
+
+    background: transparent;
+
+    color: #685541;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+.ending-exit:hover {
+    background: #685541;
+
+    color: #fff;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 20px rgba(60,45,30,0.18);
+}
+
+
+/* =========================================
+   ANIMATION
+   ========================================= */
+
+@keyframes endingFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .ending-section {
+        min-height: 90vh;
+
+        padding: 80px 20px;
+    }
+
+    .ending-stars {
+        top: 45px;
+    }
+
+    .ending-section h3 {
+        font-size: 45px;
+    }
+
+    .ending-text {
+        font-size: 15px;
+    }
+
+}
+.ending-exit {
+    position: relative;
+    overflow: hidden;
+}
+
+.ending-exit::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(255,255,255,0.25);
+
+    transition: left 0.4s ease;
+}
+
+.ending-exit:hover::before {
+    left: 100%;
+}
+/* =========================================
+   LUCKY CARD - CARD FLIP EFFECT
+   ========================================= */
+
+.lucky-card {
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+
+.lucky-card span {
+    transition:
+        transform 0.5s ease,
+        opacity 0.3s ease;
+}
+
+.lucky-card.card-picked {
+    animation: cardPick 0.6s ease;
+}
+
+.lucky-card.card-picked span {
+    transform:
+        translate(-50%, -50%)
+        rotateY(180deg);
+}
+
+
+@keyframes cardPick {
+
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    35% {
+        transform: scale(1.08) rotate(-3deg);
+    }
+
+    70% {
+        transform: scale(0.98) rotate(2deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+}
+/* =========================================
+   FINAL SCENE - MUSEUM CLOSING
+   ========================================= */
+
+.ending-section {
+    isolation: isolate;
+}
+
+/* กรอบบางรอบหน้า */
+.ending-section::after {
+    content: "";
+
+    position: absolute;
+    inset: 25px;
+
+    border: 1px solid rgba(120, 96, 70, 0.22);
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* ให้เนื้อหาอยู่เหนือกรอบ */
+.ending-section > * {
+    z-index: 1;
+}
+
+
+/* ดาวด้านบน */
+.ending-stars span {
+    display: inline-block;
+
+    animation: starTwinkle 2.5s ease-in-out infinite;
+}
+
+.ending-stars span:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+.ending-stars span:nth-child(3) {
+    animation-delay: 1.3s;
+}
+
+
+@keyframes starTwinkle {
+
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+}
+
+
+/* หัวใจตรงกลาง */
+.ending-symbol {
+    box-shadow:
+        0 0 0 8px rgba(255,255,255,0.18),
+        0 12px 30px rgba(100,80,55,0.12);
+}
+
+
+/* เส้นกลาง */
+.ending-line {
+    position: relative;
+}
+
+.ending-line::before,
+.ending-line::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 8px;
+
+    color: #a58a69;
+}
+
+.ending-line::before {
+    left: -18px;
+}
+
+.ending-line::after {
+    right: -18px;
+}
+
+
+/* ปุ่ม */
+.ending-exit {
+    margin-top: 5px;
+
+    min-width: 190px;
+
+    letter-spacing: 2.5px;
+}
+
+
+/* ตอน hover */
+.ending-exit:hover {
+    letter-spacing: 3px;
+}
+
+
+/* มือถือ */
+@media (max-width: 600px) {
+
+    .ending-section::after {
+        inset: 15px;
+    }
+
+    .ending-line {
+        width: 70px;
+    }
+
+}
+/* =========================================
+   LUCKY GIFT SYMBOL
+   ========================================= */
+
+.result-symbol {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #ad9578;
+    border-radius: 50%;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 25px;
+
+    color: #8c7254;
+
+    background: rgba(255,255,255,0.25);
+
+    box-shadow:
+        0 8px 20px rgba(80,60,40,0.10);
+
+    animation: giftSymbolIn 0.6s ease;
+}
+
+@keyframes giftSymbolIn {
+
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-20deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+
+}
+/* =========================================
+   MUSEUM CLOSING ANIMATION
+   ========================================= */
+
+body {
+    transition:
+        opacity 0.5s ease,
+        filter 0.5s ease;
+}
+
+body.museum-closing {
+    opacity: 0;
+
+    filter:
+        blur(5px)
+        brightness(0.65);
+}
+/* =========================================
+   TICKET - FINAL POLISH
+   ========================================= */
+
+.ticket {
+    position: relative;
+
+    transition:
+        transform 0.45s ease,
+        box-shadow 0.45s ease,
+        filter 0.45s ease;
+}
+
+
+/* เงาและการยกตัวเมื่อเอาเมาส์ชี้ */
+
+.ticket:hover {
+    transform:
+        translateY(-10px)
+        rotate(-1deg);
+
+    box-shadow:
+        0 28px 55px rgba(45, 35, 25, 0.28);
+
+    filter: brightness(1.03);
+}
+
+
+/* ขอบด้านในของตั๋ว */
+
+.ticket::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    border: 1px solid rgba(120, 95, 65, 0.35);
+
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+
+/* เส้นตกแต่งด้านบน */
+
+.ticket::after {
+    content: "MUSEUM OF US  ·  SPECIAL EDITION";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 10px;
+
+    transform: translateX(-50%);
+
+    white-space: nowrap;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: rgba(85, 67, 48, 0.55);
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   TICKET TEXT
+   ========================================= */
+
+.ticket .eyebrow {
+    letter-spacing: 4px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+
+.ticket-main h1,
+.ticket-main h2 {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   WATERMARK
+   ========================================= */
+
+.ticket-watermark {
+    opacity: 0.08;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.5s ease;
+}
+
+.ticket:hover .ticket-watermark {
+    opacity: 0.14;
+
+    transform: scale(1.04);
+}
+
+
+/* =========================================
+   TICKET BORDER
+   ========================================= */
+
+.ticket-border {
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+.ticket:hover .ticket-border {
+    opacity: 0.9;
+}
+
+
+/* =========================================
+   LITTLE SHINE
+   ========================================= */
+
+.ticket-area {
+    position: relative;
+}
+
+
+.ticket-area::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.18),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transition: opacity 0.5s ease;
+}
+
+
+.ticket-area:hover::after {
+    opacity: 1;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .ticket:hover {
+        transform:
+            translateY(-5px)
+            rotate(-0.5deg);
+    }
+
+    .ticket::after {
+        font-size: 6px;
+        letter-spacing: 2px;
+    }
+
+}
+/* =========================================
+   FINAL EXHIBITION — LUXURY VERSION
+   ========================================= */
+
+.ending-section {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding: 90px 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #f8f3eb 0%,
+            #eee5d8 42%,
+            #ddd0bf 100%
+        );
+
+    color: #302820;
+
+    isolation: isolate;
+}
+
+
+/* =========================================
+   BIG BACKGROUND NUMBER
+   ========================================= */
+
+.ending-section::before {
+    content: "05";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(220px, 42vw, 560px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    color: rgba(110, 88, 64, 0.045);
+
+    pointer-events: none;
+
+    z-index: -2;
+}
+
+
+/* =========================================
+   INNER FRAME
+   ========================================= */
+
+.ending-section::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 28px;
+
+    border: 1px solid rgba(110, 87, 62, 0.25);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* =========================================
+   TOP DECORATION
+   ========================================= */
+
+.ending-stars {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin-bottom: 35px;
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+
+    color: #9a7d5b;
+}
+
+.ending-stars::before,
+.ending-stars::after {
+    content: "";
+
+    width: 45px;
+    height: 1px;
+
+    background: #b49b7d;
+}
+/* =========================================
+   LABEL
+   ========================================= */
+
+.ending-label {
+    position: relative;
+
+    margin: 0 0 28px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 10px;
+
+    letter-spacing: 6px;
+
+    color: #927558;
+}
+
+
+/* =========================================
+   CENTER SYMBOL
+   ========================================= */
+
+.ending-symbol {
+    position: relative;
+
+    width: 82px;
+    height: 82px;
+
+    margin-bottom: 28px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #aa8d6a;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.25);
+
+    font-family: Georgia, serif;
+
+    font-size: 31px;
+
+    color: #927558;
+
+    box-shadow:
+        0 0 0 8px rgba(255,255,255,0.18),
+        0 15px 35px rgba(90,70,45,0.10);
+
+    animation:
+        endingHeart 3s ease-in-out infinite;
+}
+
+
+.ending-symbol::before,
+.ending-symbol::after {
+    content: "✦";
+
+    position: absolute;
+
+    font-size: 7px;
+
+    color: #a58a69;
+}
+
+.ending-symbol::before {
+    left: -18px;
+}
+
+.ending-symbol::after {
+    right: -18px;
+}
+/* =========================================
+   MAIN TITLE
+   ========================================= */
+
+.ending-section h3 {
+    position: relative;
+
+    margin: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(48px, 10vw, 90px);
+
+    line-height: 0.88;
+
+    font-weight: 400;
+
+    letter-spacing: 4px;
+
+    color: #302820;
+
+    text-shadow:
+        0 4px 20px rgba(90,70,45,0.08);
+}
+
+
+.ending-section h3 em {
+    font-style: italic;
+
+    font-weight: 400;
+
+    color: #94775a;
+}
+/* =========================================
+   DECORATIVE LINE
+   ========================================= */
+
+.ending-line {
+    position: relative;
+
+    width: 120px;
+    height: 1px;
+
+    margin: 38px 0;
+
+    background: #a99172;
+}
+
+
+.ending-line::before,
+.ending-line::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 7px;
+
+    color: #9d815f;
+}
+
+.ending-line::before {
+    left: -22px;
+}
+
+.ending-line::after {
+    right: -22px;
+}
+/* =========================================
+   MESSAGE
+   ========================================= */
+
+.ending-text {
+    position: relative;
+
+    margin: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    color: #5d4d3d;
+}
+
+
+.ending-thai {
+    position: relative;
+
+    margin: 18px 0 0;
+
+    font-family:
+        "Noto Sans Thai",
+        "Leelawadee UI",
+        Tahoma,
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    color: #766657;
+}
+
+
+/* =========================================
+   DATE
+   ========================================= */
+
+.ending-date {
+    position: relative;
+
+    margin: 32px 0 28px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #967a5d;
+}
+/* =========================================
+   BUTTON
+   ========================================= */
+
+.ending-exit {
+    position: relative;
+
+    min-width: 210px;
+
+    padding: 13px 26px;
+
+    border: 1px solid #92775a;
+
+    background: rgba(255,255,255,0.12);
+
+    color: #66533f;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        color 0.35s ease,
+        background 0.35s ease,
+        transform 0.35s ease,
+        letter-spacing 0.35s ease;
+}
+
+
+.ending-exit::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -110%;
+
+    width: 100%;
+    height: 100%;
+
+    background: #66533f;
+
+    transition: left 0.4s ease;
+
+    z-index: -1;
+}
+
+
+.ending-exit:hover {
+    color: #fff;
+
+    transform: translateY(-3px);
+
+    letter-spacing: 3.5px;
+
+    box-shadow:
+        0 12px 25px rgba(70,50,30,0.15);
+}
+
+
+.ending-exit:hover::before {
+    left: 0;
+}
+/* =========================================
+   ANIMATION
+   ========================================= */
+
+@keyframes endingHeart {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .ending-section {
+        min-height: 100svh;
+
+        padding: 75px 25px;
+    }
+
+    .ending-section::after {
+        inset: 15px;
+    }
+
+    .ending-stars {
+        margin-bottom: 25px;
+
+        gap: 15px;
+    }
+
+    .ending-stars::before,
+    .ending-stars::after {
+        width: 28px;
+    }
+
+    .ending-symbol {
+        width: 68px;
+        height: 68px;
+
+        font-size: 26px;
+    }
+
+    .ending-section h3 {
+        font-size: 48px;
+
+        letter-spacing: 2px;
+    }
+
+    .ending-text {
+        font-size: 15px;
+    }
+
+    .ending-thai {
+        font-size: 13px;
+    }
+
+}
+/* =========================
+   DRAWING CANVAS
+========================= */
+
+.drawing-space {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    background: #fffdf8;
+    border: 1px solid rgba(80, 60, 40, 0.18);
+    overflow: hidden;
+}
+
+#drawingCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.drawing-tools {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.drawing-tools button {
+    border: 1px solid rgba(80, 60, 40, 0.3);
+    background: transparent;
+    padding: 10px 18px;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.drawing-tools button:hover {
+    background: #40352b;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+
+    .drawing-space {
+        height: 300px;
+    }
+
+    .drawing-tools {
+        gap: 8px;
+    }
+
+    .drawing-tools button {
+        padding: 9px 12px;
+        font-size: 10px;
+    }
+}
+/* =========================
+   BEAUTIFUL THAI FONT
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+body {
+    font-family: "Kanit", sans-serif;
+}
+
+/* ข้อความภาษาไทยทั่วไป */
+p,
+span,
+button,
+a,
+input {
+    font-family: "Kanit", sans-serif;
+}
+
+/* หัวข้อภาษาอังกฤษ */
+h1,
+h2,
+h3,
+h4,
+.museum-title,
+.ending-section h3 {
+    font-family: "Playfair Display", "Times New Roman", serif;
+}
+
+/* ข้อความไทยในจดหมาย */
+.letter-content,
+.letter-content p,
+.ending-letter,
+.ending-letter p,
+.drawing-note,
+.drawing-paper {
+    font-family: "Kanit", sans-serif;
+    font-weight: 300;
+}
+
+/* เน้นข้อความสำคัญ */
+.letter-highlight,
+.letter-love,
+.ending-love,
+.ending-final {
+    font-family: "Kanit", sans-serif;
+    font-weight: 500;
+}
+
+/* ข้อความเล็ก */
+.memory-small,
+.memory-date,
+.ending-label,
+.letter-label,
+.letter-top,
+.letter-bottom {
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+}
+/* =========================
+   FORCE THAI FONT
+========================= */
+
+body,
+body p,
+body span,
+body div,
+body button,
+body a,
+body small,
+body label {
+    font-family: "Tahoma", "Leelawadee UI", sans-serif !important;
+}
+
+/* หัวข้อภาษาอังกฤษยังใช้ฟอนต์เดิม */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Georgia, "Times New Roman", serif !important;
+}
+
+/* ข้อความภาษาไทยในจดหมาย */
+.letter-content,
+.letter-content p,
+.ending-letter,
+.ending-letter p,
+.drawing-note,
+.drawing-paper,
+.drawing-note p {
+    font-family: "Tahoma", "Leelawadee UI", sans-serif !important;
+}
+/* =========================================
+   FINAL THAI FONT FIX
+========================================= */
+
+body {
+    font-family: "Leelawadee UI", "Tahoma", sans-serif !important;
+}
+
+/* ภาษาไทยและข้อความทั่วไป */
+p,
+span,
+small,
+button,
+a,
+label,
+input,
+textarea,
+.letter-content,
+.letter-content p,
+.ending-letter,
+.ending-letter p,
+.drawing-note,
+.drawing-paper,
+.drawing-note p,
+.lucky-hint,
+#resultText {
+    font-family: "Leelawadee UI", "Tahoma", sans-serif !important;
+}
+
+/* หัวข้อภาษาอังกฤษยังคงสไตล์พิพิธภัณฑ์ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Georgia, "Times New Roman", serif !important;
+}
+
+/* หัวข้อที่มีภาษาไทย */
+.letter-highlight,
+.letter-love,
+.ending-love,
+.ending-final {
+    font-family: "Leelawadee UI", "Tahoma", sans-serif !important;
+    font-weight: 600;
+}
+/* =========================================
+   MOBILE FINAL POLISH
+========================================= */
+
+@media (max-width: 600px) {
+
+    /* ---------- ทั่วไป ---------- */
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .museum-page {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* ---------- Header ---------- */
+
+    .museum-header {
+        padding: 18px 16px;
+        gap: 10px;
+    }
+
+    .museum-header p {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+
+    .museum-header span {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .museum-nav {
+        gap: 12px;
+    }
+
+    .museum-nav a {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    /* ---------- The Story ---------- */
+
+    .museum-title {
+        padding: 70px 20px 45px;
+    }
+
+    .museum-title > p:first-child {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .museum-title h2 {
+        font-size: clamp(42px, 13vw, 65px);
+        line-height: 0.95;
+    }
+
+    .museum-subtitle {
+        max-width: 300px;
+        margin: 22px auto 0;
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    /* ---------- Memory 001 ---------- */
+
+    .memory-section {
+        padding: 55px 18px;
+    }
+
+    .memory-label {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    .memory-content {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .memory-photo {
+        width: 88%;
+        margin: 0 auto;
+    }
+
+    .memory-photo img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .memory-text {
+        width: 100%;
+        text-align: center;
+    }
+
+    .memory-small {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .memory-text h3 {
+        font-size: 40px;
+        line-height: 0.95;
+    }
+
+    .memory-text > p:not(.memory-small) {
+        font-size: 14px;
+        line-height: 1.8;
+        max-width: 290px;
+        margin: 18px auto;
+    }
+
+    .memory-date {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    /* ---------- Our Moments ---------- */
+
+    .photo-gallery {
+        padding: 55px 14px;
+    }
+
+    .gallery-heading h3 {
+        font-size: 42px;
+        line-height: 1;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .gallery-item p {
+        font-size: 9px;
+        letter-spacing: 1px;
+        margin-top: 8px;
+    }
+
+    .gallery-item > span {
+        font-size: 8px;
+    }
+
+    /* ---------- Mystery Card ---------- */
+
+    .mystery-card {
+        height: 180px;
+    }
+
+    .mystery-card span {
+        font-size: 42px;
+    }
+
+    /* ---------- Drawing ---------- */
+
+    .drawing-section {
+        padding: 65px 16px;
+    }
+
+    .drawing-heading h3 {
+        font-size: 43px;
+        line-height: 0.95;
+    }
+
+    .drawing-card {
+        padding: 16px;
+    }
+
+    .drawing-card-top {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .drawing-paper {
+        padding: 20px 14px;
+    }
+
+    .drawing-paper-title {
+        font-size: 22px;
+        line-height: 1.1;
+    }
+
+    .drawing-space {
+        height: 300px;
+    }
+
+    .drawing-note {
+        font-size: 12px;
+        line-height: 1.8;
+    }
+
+    .drawing-tools {
+        flex-wrap: wrap;
+    }
+
+    /* ---------- Lucky Card ---------- */
+
+    .keepsake-section {
+        padding: 65px 18px;
+    }
+
+    .keepsake-card {
+        padding: 38px 22px;
+    }
+
+    .keepsake-card h3 {
+        font-size: 40px;
+        line-height: 0.95;
+    }
+
+    .keepsake-text {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    /* ---------- Lucky Viewer ---------- */
+
+    .lucky-viewer {
+        padding: 20px 14px;
+    }
+
+    .lucky-content {
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 30px 16px;
+    }
+
+    .lucky-content h3 {
+        font-size: 34px;
+        line-height: 0.95;
+    }
+
+    .lucky-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .lucky-card {
+        min-height: 145px;
+    }
+
+    .lucky-card:last-child {
+        grid-column: 1 / -1;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    /* ---------- Final Exhibition ---------- */
+
+    .ending-section {
+        min-height: 100svh;
+        padding: 70px 18px;
+    }
+
+    .ending-section::after {
+        inset: 16px;
+    }
+
+    .ending-label {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .ending-symbol {
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+    }
+
+    .ending-section h3 {
+        font-size: 48px;
+        line-height: 0.92;
+    }
+
+    .ending-letter {
+        padding: 20px 8px;
+        font-size: 16px;
+        line-height: 1.85;
+    }
+
+    .ending-love {
+        font-size: 20px;
+    }
+
+    .ending-final {
+        font-size: 21px;
+    }
+
+    .ending-exit {
+        width: 100%;
+        max-width: 280px;
+        padding: 13px 18px;
+        font-size: 10px;
+    }
+}
